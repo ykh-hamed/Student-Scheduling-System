@@ -1,5 +1,5 @@
 <div id="header">
-    <a href='../common/index.php'>
+    <a href='../index.php'>
         <img src="../images/logo.png" style="float: left; " alt="logo" width="240" height="160"></a>
     <div id="userStuff">
         <div id="userImage">
@@ -67,7 +67,7 @@
 </div>
 
 <div id="headerLogIn">
-    <a href="../common/index.php"><img src="../images/logo.png" style="display: block;
+    <a href="../index.php"><img src="../images/logo.png" style="display: block;
         margin: 0 auto; " alt="logo" width="300" height="210"></a>
 
 </div>

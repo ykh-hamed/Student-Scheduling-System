@@ -75,7 +75,7 @@
 session_start();
 if (!isset($_SESSION['id'])) {
     session_destroy();
-    header("Location: ../common/index.php"); // redirects them to homepage
+    header("Location: ../index.php"); // redirects them to homepage
      exit; // for good measure
 }
 // check if all are selected and filled

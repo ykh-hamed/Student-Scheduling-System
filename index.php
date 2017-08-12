@@ -1,7 +1,7 @@
 <?php
 session_start();
 // load the database
-include('DBconnection.php');
+include('common/DBconnection.php');
 //check if loggedin and redirect
 if(isset($_SESSION['id'])) {
     $id=$_SESSION['id'];

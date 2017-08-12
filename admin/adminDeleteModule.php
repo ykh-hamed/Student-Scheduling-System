@@ -50,7 +50,7 @@
 session_start();
 if (!isset($_SESSION['id'])) {
     session_destroy();
-    header("Location: ../index.php");
+    header("Location: ../common/index.php");
     exit;
 }
 // load the database

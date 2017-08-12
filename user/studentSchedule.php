@@ -2,7 +2,7 @@
 session_start();
 if(!isset($_SESSION['id'])) {
     session_destroy();
-    header("Location: ../index.php"); // redirects them to homepage
+    header("Location: ../common/index.php"); // redirects them to homepage
     exit; 
 }
 ?>

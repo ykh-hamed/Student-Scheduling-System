@@ -1,7 +1,7 @@
 <?php
 
     //choices 'WAMP' or 'heroku'
-    $serverType="WAMP";
+    $serverType="heroku";
     
     $server = 'localhost';
     $username = 'root';

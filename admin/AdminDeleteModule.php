@@ -17,15 +17,15 @@
     <header id="header"></header>
     <nav class="main-nav">
         <div id="navItems">
-            <a href="AdminScheduleView.php" class="navLink">View Schedules</a>
-            <a href="AdminScheduleEdit.php" class="navLink">Edit Schedules</a>
-            <a href="AdminAddModule.php" class="navLink">Add Modules</a>
-            <a href="AdminDeleteModule.php" class="navLink">Delete Module</a>
+            <a href="adminScheduleView.php" class="navLink">View Schedules</a>
+            <a href="adminScheduleEdit.php" class="navLink">Edit Schedules</a>
+            <a href="adminAddModule.php" class="navLink">Add Modules</a>
+            <a href="adminDeleteModule.php" class="navLink">Delete Modules</a>
         </div>
     </nav>
     <div id="main">
         <h1 style="text-align:center">Schedule Editor</h1>
-        <form method="post" action="AdminDeleteModule.php">
+        <form method="post" action="adminDeleteModule.php">
             <br>
             <br>
             <div id="modulesDiv"></div>
@@ -48,39 +48,26 @@
 </html>
 <?php
 session_start();
-if(!isset($_SESSION['id'])) {
+if (!isset($_SESSION['id'])) {
     session_destroy();
-     header("Location: ../common/Home.php");
-     exit;
+    header("Location: ../common/index.php");
+    exit;
 }
-$connect=@mysql_connect('localhost','root','');
-if (!$connect)
-{
-    die("database connection went kaboom" . mysql_error());
-
-}
-$mydb=mysql_select_db('schedule');
-if(!$mydb)
-{
-    die("could not select database :" . mysql_error());
-}
+// load the database
+include('../common/DBconnection.php');
 //check if module is selected and delete it
-if (isset($_POST['moduleSelect']))
-{
+if (isset($_POST['moduleSelect'])) {
     $moduleName=$_POST['moduleSelect'];
     $query="DELETE FROM `module` WHERE `moduleName`='$moduleName'";
     $result= mysql_query($query);
 }
 // populate modules
-$query="SELECT * FROM `module` ";
+    $query="SELECT * FROM `module` ";
 $result= mysql_query($query);
 echo " <script type='text/javascript'> (document.getElementById(\"modulesDiv\")).innerHTML=\"<label> Module : </label><select name='moduleSelect'><option disabled selected value > -- select an option -- </option> ";
 
-while ( $row = mysql_fetch_row( $result ) ){
+while ($row = mysql_fetch_row($result)) {
     echo "<option value='$row[0]' id='$row[0]'>".$row[0]."</option>";
-
 }
-echo"</select><br><br>\" ;</script>";
-
-
+echo "</select><br><br>\" ;</script>";
 ?>

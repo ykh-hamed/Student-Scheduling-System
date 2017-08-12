@@ -59,7 +59,7 @@
         </div>
     </nav>
     <div id="main">
-        <form id="signUp" method="post" action="UserSignUp.php" enctype="multipart/form-data">
+        <form id="signUp" method="post" action="userSignUp.php" enctype="multipart/form-data">
             <br>
             <br>
             <label>First Name:</label>
@@ -116,20 +116,8 @@
 </html>
 <?php
 
-function loadDB() {
-    $connect=@mysql_connect('localhost','root','');
-    if (!$connect)
-    {
-        die("database connection went kaboom" . mysql_error());
-
-    }
-    $mydb=mysql_select_db('schedule');
-    if(!$mydb)
-    {
-        die("could not select database :" . mysql_error());
-    }
-}
-loadDB();
+// load the database
+include('../common/DBconnection.php');
 // check if are are selected and filled
 if (isset($_POST['facultySelect']) and isset($_POST['yearSelect']) and isset($_POST['fName']) and isset($_POST['lName']) and isset($_POST['password']))
 {
@@ -149,6 +137,10 @@ if (isset($_POST['facultySelect']) and isset($_POST['yearSelect']) and isset($_P
     $result= mysql_query($query);
     if (!$result) {
         die('Invalid query: ' . mysql_error());
+    }
+    else{
+        $message = "User created with id: " . mysql_insert_id();
+        echo "<script type='text/javascript'>alert('$message');</script>";
     }
 
 

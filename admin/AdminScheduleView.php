@@ -1,10 +1,10 @@
 <?php
 //check if not loggedin
 session_start();
-if(!isset($_SESSION['id'])) {
+if (!isset($_SESSION['id'])) {
     session_destroy();
-    header("Location: ../common/Home.php"); 
-    exit; 
+    header("Location: ../common/index.php");
+    exit;
 }
 
 ?>
@@ -27,15 +27,15 @@ if(!isset($_SESSION['id'])) {
         <header id="header"></header>
         <nav class="main-nav">
             <div id="navItems">
-                <a href="AdminScheduleView.php" class="navLink">View Schedules</a>
-                <a href="AdminScheduleEdit.php" class="navLink">Edit Schedules</a>
-                <a href="AdminAddModule.php" class="navLink">Add Modules</a>
-                <a href="AdminDeleteModule.php" class="navLink">Delete Modules</a>
+                <a href="adminScheduleView.php" class="navLink">View Schedules</a>
+                <a href="adminScheduleEdit.php" class="navLink">Edit Schedules</a>
+                <a href="adminAddModule.php" class="navLink">Add Modules</a>
+                <a href="adminDeleteModule.php" class="navLink">Delete Modules</a>  
             </div>
         </nav>
         <div id="main">
             <h1 style="text-align:center">Schedule Viewer</h1>
-            <form method="post" action="AdminScheduleView.php">
+            <form method="post" action="adminScheduleView.php">
                 <label>Faculty:</label>
                 <select id="facultySelect" name="facultySelect">
                     <option disabled selected value> -- select an option -- </option>
@@ -171,23 +171,10 @@ if(!isset($_SESSION['id'])) {
     </html>
     <?php
 
-function loadDB() {
-    $connect=@mysql_connect('localhost','root','');
-    if (!$connect)
-    {
-        die("database connection went kaboom" . mysql_error());
-
-    }
-    $mydb=mysql_select_db('schedule');
-    if(!$mydb)
-    {
-        die("could not select database :" . mysql_error());
-    }
-}
-loadDB();
+// load the database
+include('../common/DBconnection.php');
 // check if both selected and load schedule
-if (isset($_POST['facultySelect']) and isset($_POST['yearSelect']))
-{
+if (isset($_POST['facultySelect']) and isset($_POST['yearSelect'])) {
     $majorName=$_POST['facultySelect'];
     $year=$_POST['yearSelect'];
 
@@ -196,16 +183,14 @@ if (isset($_POST['facultySelect']) and isset($_POST['yearSelect']))
 
     $result= mysql_query($query);
     echo "<script type='text/javascript'>";
-    while ( $row = mysql_fetch_row( $result ) ){
-
-        for ($i = 4; $i <=  10; $i++){
+    while ($row = mysql_fetch_row($result)) {
+        for ($i = 4; $i <=  10; $i++) {
             $slot=$i-3;
-            if($row[$i+2])
+            if ($row[$i+2]) {
                 echo "(document.getElementById(\"d".$row[5]."s".$slot."\")).innerHTML='$row[0]<br><br>Dr.$row[1]';";
+            }
         }
-
     }
     echo"</script>";
-
 }
 ?>

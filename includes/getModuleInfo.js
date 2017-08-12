@@ -7,6 +7,6 @@ $(document).click(function (event) {
 
 
 function getModuleInfo(module) {
-    <!--get info of the module from the db and display -->
+    //get info of the module from the db and display
     document.getElementById("moduleInfo").innerHTML = '<h2>Module information:</h2>' + "<h4>" + module + "</h4>";
 }

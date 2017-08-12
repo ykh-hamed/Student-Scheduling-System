@@ -1,21 +1,12 @@
 <div id="header">
-    <a href='../common/Home.php'>
+    <a href='../common/index.php'>
         <img src="../images/logo.png" style="float: left; " alt="logo" width="240" height="160"></a>
     <div id="userStuff">
         <div id="userImage">
             <?php
             //set user pic
-            $connect=@mysql_connect('localhost','root','');
-            if (!$connect)
-            {
-                die("database connection went kaboom" . mysql_error());
-
-            }
-            $mydb=mysql_select_db('schedule');
-            if(!$mydb)
-            {
-                die("could not select database :" . mysql_error());
-            }
+            // load the database
+            include('../common/DBconnection.php');
             session_start();
             $id= $_SESSION['id'];
             $query="SELECT * FROM `user`WHERE id=$id";
@@ -48,7 +39,7 @@
             <li><a href="http://lib.bue.edu.eg/" class="navLink">Library</a></li>
             <li>SRS</li>
             <ul>
-                <li> <a href="../user/StudentSchedule.php" class="navLink">Schedule</a></li>
+                <li> <a href="../user/studentSchedule.php" class="navLink">Schedule</a></li>
             </ul>
 
         </ul>
@@ -65,10 +56,10 @@
             <li><a href="http://lib.bue.edu.eg/" class="navLink">Library</a></li>
             <li>SRS</li>
             <ul>
-                <li> <a href="../admin/AdminScheduleEdit.php" class="navLink">Schedule Edit</a></li>
-                <li> <a href="../admin/AdminScheduleView.php" classa="navLink">Schedule View</a></li>
-                <li> <a href="../admin/AdminAddModule.php" class="navLink">Add Modules</a></li>
-                <li> <a href="../admin/AdminDeleteModule.php" class="navLink">Delete Modules</a></li>
+                <li> <a href="../admin/adminScheduleEdit.php" class="navLink">Schedule Edit</a></li>
+                <li> <a href="../admin/adminScheduleView.php" classa="navLink">Schedule View</a></li>
+                <li> <a href="../admin/adminAddModule.php" class="navLink">Add Modules</a></li>
+                <li> <a href="../admin/adminDeleteModule.php" class="navLink">Delete Modules</a></li>
             </ul>
 
         </ul>
@@ -76,7 +67,7 @@
 </div>
 
 <div id="headerLogIn">
-    <a href="../common/Home.php"><img src="../images/logo.png" style="display: block;
+    <a href="../common/index.php"><img src="../images/logo.png" style="display: block;
         margin: 0 auto; " alt="logo" width="300" height="210"></a>
 
 </div>

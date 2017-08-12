@@ -2,7 +2,7 @@
 session_start();
 if(!isset($_SESSION['id'])) {
     session_destroy();
-    header("Location: ../common/Home.php"); // redirects them to homepage
+    header("Location: ../common/index.php"); // redirects them to homepage
     exit; 
 }
 ?>
@@ -20,7 +20,7 @@ if(!isset($_SESSION['id'])) {
         <script src="../includes/getModuleInfo.js"></script>
         <script>
             $(document).ready(function () {
-                $('#tablelol').load("LoadSchedule.php");
+                $('#tablelol').load("loadSchedule.php");
             });
         </script>
         <div id="tablelol"></div>

@@ -8,19 +8,18 @@
  }
 
  function loadYears() {
-     <!--Get Years from database -->
-
+     //Get Years from database 
 
      year = document.getElementById("yearSelect");
      year.addEventListener("change", loadModules)
  }
 
  function loadModules() {
-     <!--Get modules from database -->
+     //Get modules from database
      var selectedFaculty = faculty.options[faculty.selectedIndex].value;
 
 
-     <!--Display modules -->
+     //Display modules
      var modulesDiv = document.getElementById("modulesDiv");
      modulesDiv.innerHTML = ' <label>Module:</label><select id="moduleSelect" > <option disabled selected value > -- select an option -- </option> <option value="Module1">Module1</option>   <option value="Module2">Module2</option><option value="Module3">Module3</option><option value="Module4">Module4</option></select>';
 

@@ -1,20 +1,7 @@
 <?php
 session_start();
 // load the database
-function loadDB() {
-    $connect=@mysql_connect('localhost','root','');
-    if (!$connect)
-    {
-        die("database connection went kaboom" . mysql_error());
-
-    }
-    $mydb=mysql_select_db('schedule');
-    if(!$mydb)
-    {
-        die("could not select database :" . mysql_error());
-    }
-}
-loadDB();
+include('DBconnection.php');
 //check if loggedin and redirect
 if(isset($_SESSION['id'])) {
     $id=$_SESSION['id'];
@@ -22,9 +9,9 @@ if(isset($_SESSION['id'])) {
     $result= mysql_query($query);
     $row = mysql_fetch_array($result);
     if(!$row[6])
-        header('Location: ../user/StudentSchedule.php');
+        header('Location: ../user/studentSchedule.php');
     else if($row[6])
-        header('Location: ../admin/AdminScheduleView.php');
+        header('Location: ../admin/adminScheduleView.php');
     exit; 
 }
 ?>
@@ -37,7 +24,7 @@ if(isset($_SESSION['id'])) {
         <meta charset="UTF-8">
         <title>SRS .::Log in::.</title>
         <link rel="icon" href="../images/iconBUE.ico" type="image/x-icon">
-        <script src="../includes/LogIn.js"></script>
+        <script src="../includes/logIn.js"></script>
         <link href="../includes/styles.css" type="text/css" rel="stylesheet">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
         <script src="../includes/loadHF.js"></script>
@@ -58,7 +45,7 @@ if(isset($_SESSION['id'])) {
             </div>
         </nav>
         <div id="main">
-            <form id="login" method="post" action="Home.php">
+            <form id="login" method="post" action="index.php">
                 <br>
                 <br>
                 <br>
@@ -68,7 +55,7 @@ if(isset($_SESSION['id'])) {
                 <input id="password" name="password" class="usernamePass" type="password" placeholder="Password" required>
                 <br>
                 <br>
-                <a href="../user/UserSignUp.php">Sign up?</a>
+                <a href="../user/userSignUp.php">Sign up?</a>
                 <br>
 
                 <br>
@@ -115,9 +102,9 @@ if (isset($_POST['userName']) and isset($_POST['password']))
         //check if admin or not
         $row = mysql_fetch_array($result);
         if(!$row[6])
-            header('Location: ../user/StudentSchedule.php');
+            header('Location: ../user/studentSchedule.php');
         else if($row[6])
-            header('Location: ../admin/AdminScheduleView.php');
+            header('Location: ../admin/adminScheduleView.php');
     }
     // if doesnt exists reload with message 
     else echo "<script type='text/javascript'>alert('invalid credentials');</script>";

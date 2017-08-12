@@ -1,0 +1,6 @@
+{
+    "require":{
+        "ext-mysql":"*",
+        "components/jquery": "3.2.1"
+    }
+}

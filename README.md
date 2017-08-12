@@ -9,10 +9,10 @@ This project is a student record system website which will be for students and a
 1. Install WAMP
 2. Open localhost -> phpmyadmin 
 3. create new database named schedule -> import sql file into this database
-4. start the project from /common/Home.php
+4. start the project from /common/index.php
 
 ### Users
 - User
     - id: 1, pass: 123
 - Admin
-    - id: 2, pass: 123
+    - id: 2, pass: admin
